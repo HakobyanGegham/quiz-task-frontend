@@ -1,0 +1,11 @@
+<div class="questions-container">
+  <div class="add-btn-container">
+    <a class="edit" [routerLink]="['/question/edit']">
+      <button mat-button class="btn action" i18n matTooltip="Add Item">
+        <mat-icon>create</mat-icon>
+      </button>
+    </a>
+  </div>
+  <app-question-item *ngFor="let question of questions"
+                     [question]="question"></app-question-item>
+</div>

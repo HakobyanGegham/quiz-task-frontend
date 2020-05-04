@@ -1,1 +1,174 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error-message {
+  color: red;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.text-input {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px #cccccc;
+  background-color: #ffffff;
+  border: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.has-error {
+    border: 1px solid red;
+  }
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.pagination-controller {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  height: 40px;
+  background: #0288D1;
+  border-radius: 4px;
+  line-height: 40px;
+  color: #fff;
+  box-shadow: -1px 0 3px 1px rgba(133, 133, 133, 0.25);
+}
+
+.content {
+  box-shadow: -1px 0 3px 1px rgba(133, 133, 133, 0.25);
+  line-height: 35px;
+  text-align: center;
+}
+
+.no-wrap-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.left-panel {
+  width: 230px;
+
+  .main-list {
+    font-size: 17px;
+    color: #3c3c3c;
+
+    .main-list-item {
+      .rotating-icon {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        transition: transform .15s;
+        transition-timing-function: ease-in-out;
+        transform: rotate(0deg);
+
+        &.rotate {
+          transform: rotate(90deg);
+        }
+      }
+
+      .item-text {
+        padding: 10px 20px;
+        position: relative;
+        text-transform: uppercase;
+        transition: 0.6s;
+        cursor: pointer;
+
+        &:hover {
+          background: #e3e3e3;
+          color: #157e9d;
+        }
+      }
+
+
+      .festival-list {
+        text-transform: none;
+        padding: 10px 20px;
+
+        .festival-item {
+          padding: 10px 15px;
+          cursor: pointer;
+          transition: 0.6s;
+
+          &:hover {
+            background: #e3e3e3;
+            color: #157e9d;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content {
+  &.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  .btn {
+    padding: 0;
+    min-width: unset;
+    width: 100%;
+    border-radius: 0;
+
+    &:hover {
+      background: #e9e5ea;
+    }
+  }
+
+  .edit {
+    color: #64B5F6;
+  }
+
+  .remove {
+    color: #E53935;
+  }
+}
+
+.add-btn-container {
+
+  .add-button {
+    margin: 10px 0;
+    border: 1px solid #009688;
+    color: #009688;
+    transition: 0.6s;
+    border-radius: 5px;
+    font-size: 17px;
+
+    &:hover {
+      background: #009688;
+      color: white;
+    }
+  }
+}
