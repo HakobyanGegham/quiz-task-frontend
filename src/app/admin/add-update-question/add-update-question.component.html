@@ -1,1 +1,43 @@
-<p>add-update-question works!</p>
+<div class="form-container">
+  <form [formGroup]="form" class="question-form" (ngSubmit)="submit(this.form.value)">
+    <mat-form-field>
+      <mat-label>Question Content</mat-label>
+      <input matInput formControlName="content">
+    </mat-form-field>
+    <div class="slider-container">
+      <div class="label-container">
+        <mat-label>Score</mat-label>
+      </div>
+      <mat-slider thumbLabel formControlName="score"
+                  tickInterval="20" min="5" max="20"></mat-slider>
+    </div>
+    <div class="answer-container">
+      <div class="answers" formArrayName="answers"
+           *ngFor="let answer of getFormControlAsArray('answers').controls;let i= index">
+        <div [formGroupName]="i" class="answer-container">
+          <mat-form-field class="answer-form-field">
+            <mat-label>Answer</mat-label>
+            <input matInput formControlName="content">
+          </mat-form-field>
+          <button mat-button matTooltip="Remove Answer" (click)="removeAnswer(i, $event)">
+            <mat-icon class="action-button remove">delete</mat-icon>
+          </button>
+          <mat-checkbox formControlName="isCorrect"></mat-checkbox>
+          <input type="hidden" formControlName="id">
+        </div>
+      </div>
+    </div>
+    <div class="btn-container">
+      <button mat-button matTooltip="Add Answer" class="button-container" (click)="addAnswer($event)">
+        <span class="add-text">Add Answer</span>
+        <mat-icon class="add-icon">add</mat-icon>
+      </button>
+    </div>
+    <div class="btn-container">
+      <button mat-button matTooltip="Save Question" class="button-container">
+        <span class="add-text">Save</span>
+      </button>
+    </div>
+
+  </form>
+</div>

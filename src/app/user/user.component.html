@@ -1,1 +1,8 @@
-<p>user works!</p>
+<div class="user-wrapper">
+  <div class="start-btn-container">
+    <a [routerLink]="['/quiz']">
+      <button mat-button matTooltip="start quiz">Start Quiz</button>
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

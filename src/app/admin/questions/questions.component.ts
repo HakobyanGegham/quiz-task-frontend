@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../models/question';
 import {QuestionService} from '../../services/question.service';
+import {from, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-questions',
@@ -10,6 +11,7 @@ import {QuestionService} from '../../services/question.service';
 export class QuestionsComponent implements OnInit {
 
   public questions: Question[];
+  public p: number;
 
   constructor(private questionService: QuestionService) {
   }

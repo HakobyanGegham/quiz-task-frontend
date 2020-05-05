@@ -9,6 +9,13 @@ import {AddUpdateQuestionComponent} from './add-update-question/add-update-quest
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 
 @NgModule({
@@ -18,7 +25,13 @@ import {MatButtonModule} from '@angular/material/button';
     AdminRoutingModule,
     MatIconModule,
     MatTooltipModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSliderModule
   ]
 })
 export class AdminModule {

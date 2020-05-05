@@ -1,11 +1,16 @@
 <div class="questions-container">
   <div class="add-btn-container">
-    <a class="edit" [routerLink]="['/question/edit']">
+    <a class="edit" [routerLink]="['edit']">
       <button mat-button class="btn action" i18n matTooltip="Add Item">
-        <mat-icon>create</mat-icon>
+        <span class="add-question-text">Add Question</span>
+        <mat-icon>add</mat-icon>
       </button>
     </a>
   </div>
-  <app-question-item *ngFor="let question of questions"
+  <app-question-item *ngFor="let question of questions | paginate: { itemsPerPage: 10, currentPage: p }"
                      [question]="question"></app-question-item>
+
+  <div class="pagination-controller">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

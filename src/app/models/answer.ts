@@ -4,7 +4,7 @@ export class Answer implements Deserializable {
   id: number;
   questionId: number;
   content: string;
-  isRight: boolean;
+  isCorrect: number;
 
   deserialize(input: any): this {
     return Object.assign(this, input);

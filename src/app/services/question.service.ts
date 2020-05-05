@@ -15,8 +15,8 @@ export class QuestionService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getQuestion(): Observable<Question> {
-    return this.httpClient.get<Question>(this.questionUrl).pipe(
+  public getQuestion(questionId: number): Observable<Question> {
+    return this.httpClient.get<Question>(`${this.questionUrl}/${questionId}`).pipe(
       map(res => new Question().deserialize(res))
     );
   }

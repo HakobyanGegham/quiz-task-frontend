@@ -15,6 +15,10 @@ const routes: Routes = [
         component: QuestionsComponent
       },
       {
+        path: 'question/edit/:questionId',
+        component: AddUpdateQuestionComponent
+      },
+      {
         path: 'question/edit',
         component: AddUpdateQuestionComponent
       }
