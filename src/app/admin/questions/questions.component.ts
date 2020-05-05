@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Question} from '../../models/question';
 import {QuestionService} from '../../services/question.service';
 import {from, Observable, of} from 'rxjs';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-questions',
@@ -12,6 +13,7 @@ export class QuestionsComponent implements OnInit {
 
   public questions: Question[];
   public p: number;
+  public filteredItems: Observable<any[]>;
 
   constructor(private questionService: QuestionService) {
   }
@@ -19,7 +21,11 @@ export class QuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.questionService.getQuestions().subscribe(questions => {
       this.questions = questions;
+      this.filteredItems = of(questions);
     });
   }
 
+  public questionRemoved(id: any) {
+    this.filteredItems = of(this.questions.filter(question => question.id !== id));
+  }
 }

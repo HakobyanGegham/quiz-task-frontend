@@ -27,9 +27,9 @@ export class QuestionService {
     );
   }
 
-  public deleteQuestion(id: number): Observable<string> {
-    return this.httpClient.delete<string>(`${this.questionUrl}/${id}`).pipe(
-      map(res => res.toString())
+  public deleteQuestion(id: number): Observable<Question> {
+    return this.httpClient.delete<Question>(`${this.questionUrl}/${id}`).pipe(
+      map(res => new Question().deserialize(res))
     );
   }
 

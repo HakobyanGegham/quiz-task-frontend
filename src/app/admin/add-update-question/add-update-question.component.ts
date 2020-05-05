@@ -6,6 +6,9 @@ import {QuestionService} from '../../services/question.service';
 import {ActivatedRoute} from '@angular/router';
 import {Answer} from '../../models/answer';
 import {AnswerService} from '../../services/answer.service';
+import {Observable, of} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {SuccessDialogComponent} from '../../dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-add-update-question',
@@ -15,10 +18,12 @@ import {AnswerService} from '../../services/answer.service';
 export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
   public form: FormGroup;
   public question: Question;
+  public hasNotCorrectAnswer: Observable<boolean>;
 
   constructor(private formBuilder: FormBuilder,
               private questionService: QuestionService,
               private answerService: AnswerService,
+              private dialog: MatDialog,
               private route: ActivatedRoute) {
     super();
   }
@@ -76,14 +81,30 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
     answers.push(this.createAnswerControl());
   }
 
+  public chooseCorrect() {
+    this.hasNotCorrectAnswer = of(false);
+  }
+
   public submit(value: any) {
     this.formSubmitAttempt = true;
-    if (this.form.valid) {
+    if (this.form.valid && this.checkIfHasCorrectAnswer()) {
       this.addUpdateAnswer(value);
     } else {
       this.validateAllFormFields(this.form);
       return false;
     }
+  }
+
+  private checkIfHasCorrectAnswer() {
+    const correctAnswer = this.getFormControlAsArray('answers').controls.find(answer => {
+      return answer.get('isCorrect').value !== 0 && answer.get('isCorrect').value !== false;
+    });
+
+    if (!correctAnswer) {
+      this.hasNotCorrectAnswer = of(true);
+      return false;
+    }
+    return true;
   }
 
   private addUpdateAnswer(value: any) {
@@ -93,9 +114,22 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
     newQuestion.answers = value.answers;
 
     if (this.question) {
-      this.questionService.updateQuestion(newQuestion, this.question.id).subscribe();
+      this.questionService.updateQuestion(newQuestion, this.question.id).subscribe(() => {
+        this.showSuccessDialog('Question has been updated successfully.');
+      });
     } else {
-      this.questionService.addQuestion(newQuestion).subscribe();
+      this.questionService.addQuestion(newQuestion).subscribe(() => {
+        this.showSuccessDialog('Question has been added successfully.');
+      });
     }
+  }
+
+  private showSuccessDialog(message: string) {
+    const dialogRef = this.dialog.open(SuccessDialogComponent, {
+      width: '300px',
+      data: {
+        dataKey: message
+      }
+    });
   }
 }

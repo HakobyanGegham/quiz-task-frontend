@@ -1,4 +1,7 @@
 <div class="form-container">
+  <div class="return-btn">
+    <button matTooltip="return" mat-button [routerLink]="['/admin/questions']">Return</button>
+  </div>
   <form [formGroup]="form" class="question-form" (ngSubmit)="submit(this.form.value)">
     <mat-form-field>
       <mat-label>Question Content</mat-label>
@@ -22,10 +25,13 @@
           <button mat-button matTooltip="Remove Answer" (click)="removeAnswer(i, $event)">
             <mat-icon class="action-button remove">delete</mat-icon>
           </button>
-          <mat-checkbox formControlName="isCorrect"></mat-checkbox>
+          <mat-checkbox formControlName="isCorrect" (click)="chooseCorrect()"></mat-checkbox>
           <input type="hidden" formControlName="id">
         </div>
       </div>
+      <ng-container *ngIf="hasNotCorrectAnswer|async">
+        <div class="error-message">Please choose correct answer.</div>
+      </ng-container>
     </div>
     <div class="btn-container">
       <button mat-button matTooltip="Add Answer" class="button-container" (click)="addAnswer($event)">
