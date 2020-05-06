@@ -11,7 +11,7 @@ export class ErrorDialogService {
   }
 
   showMessage(errorMessage: string) {
-    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+    this.dialog.open(ErrorDialogComponent, {
       width: '300px',
       data: {
         dataKey: errorMessage

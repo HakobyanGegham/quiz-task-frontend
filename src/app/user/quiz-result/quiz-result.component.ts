@@ -23,5 +23,4 @@ export class QuizResultComponent implements OnInit {
       });
     }
   }
-
 }

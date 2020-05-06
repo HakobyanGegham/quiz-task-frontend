@@ -139,7 +139,7 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
   }
 
   private showSuccessDialog(message: string) {
-    const dialogRef = this.dialog.open(SuccessDialogComponent, {
+    this.dialog.open(SuccessDialogComponent, {
       width: '300px',
       data: {
         dataKey: message

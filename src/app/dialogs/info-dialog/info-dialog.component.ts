@@ -7,7 +7,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./info-dialog.component.less']
 })
 export class InfoDialogComponent implements OnInit {
-
   public message ? = this.data.dataKey;
   constructor(public dialogRef: MatDialogRef<InfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {

@@ -74,7 +74,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   }
 
   private showInfoDialog(answerInfo: AnswerInfo) {
-    const dialogRef = this.dialog.open(InfoDialogComponent, {
+    this.dialog.open(InfoDialogComponent, {
       width: '300px',
       data: {
         dataKey: answerInfo.message

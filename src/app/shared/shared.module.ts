@@ -7,7 +7,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {ErrorDialogComponent} from '../dialogs/error-dialog/error-dialog.component';
 import {SuccessDialogComponent} from '../dialogs/success-dialog/success-dialog.component';
-import {ConfirmDialogComponent} from '../dialogs/confirm-dialog/confirm-dialog.component';
 import {InfoDialogComponent} from '../dialogs/info-dialog/info-dialog.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {RouterModule} from '@angular/router';
@@ -17,7 +16,6 @@ import {RouterModule} from '@angular/router';
     TopTenComponent,
     ErrorDialogComponent,
     SuccessDialogComponent,
-    ConfirmDialogComponent,
     InfoDialogComponent
   ],
   imports: [
@@ -39,7 +37,6 @@ import {RouterModule} from '@angular/router';
     TopTenComponent,
     ErrorDialogComponent,
     SuccessDialogComponent,
-    ConfirmDialogComponent,
     InfoDialogComponent,
     CommonModule
   ]

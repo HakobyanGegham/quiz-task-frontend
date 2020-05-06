@@ -8,15 +8,14 @@
       <label for="firstName" class="input-label"></label>
       <input id="firstName" class="text-input"
              [ngClass]="displayFieldCss('firstName')"
-             formControlName="firstName"
-             i18n-placeholder="@@firstName" placeholder="First Name">
+             formControlName="firstName" placeholder="First Name">
       <ng-container *ngIf="isFieldValid('firstName')">
         <div *ngIf="getFormControl('firstName').errors.required"
-             class="error-message" i18n="@@firstNameErrorRequired">
+             class="error-message">
           First Name is required.
         </div>
         <div *ngIf="getFormControl('firstName').errors.minlength"
-             class="error-message" i18n="@@firstNameErrorMinLength">
+             class="error-message">
           First Name must be at least 4 characters long.
         </div>
       </ng-container>
@@ -25,16 +24,15 @@
       <label for="lastName" class="input-label"></label>
       <input id="lastName" class="text-input"
              [ngClass]="displayFieldCss('lastName')"
-             formControlName="lastName"
-             i18n-placeholder="@@lastName" placeholder="Last Name">
+             formControlName="lastName" placeholder="Last Name">
       <ng-container *ngIf="isFieldValid('lastName')">
 
         <div *ngIf="getFormControl('lastName').errors.required"
-             class="error-message" i18n="@@firstNameErrorRequired">
+             class="error-message">
           Last Name is required.
         </div>
         <div *ngIf="getFormControl('lastName').errors.minlength"
-             class="error-message" i18n="@@firstNameErrorMinLength">
+             class="error-message">
           Last Name must be at least 4 characters long.
         </div>
       </ng-container>
@@ -43,12 +41,11 @@
       <label for="email" class="input-label"></label>
       <input id="email" class="text-input email-input"
              [ngClass]="displayFieldCss('email')"
-             formControlName="email"
-             i18n-placeholder="@@email" placeholder="Email">
+             formControlName="email" placeholder="Email">
       <ng-container *ngIf="isFieldValid('email')">
 
         <div *ngIf="getFormControl('email').errors.required"
-             class="error-message" i18n="@@emailErrorRequired">
+             class="error-message">
           Email is required.
         </div>
 
@@ -58,16 +55,15 @@
       <label for="password" class="input-label"></label>
       <input id="password" class="text-input"
              [ngClass]="displayFieldCss('password')"
-             formControlName="password"
-             i18n-placeholder="@@password" placeholder="Password">
+             formControlName="password" placeholder="Password">
       <ng-container *ngIf="isFieldValid('password')">
 
         <div *ngIf="getFormControl('password').errors.required"
-             class="error-message" i18n="@@passwordErrorRequired">
+             class="error-message">
           Password is required.
         </div>
         <div *ngIf="getFormControl('password').errors.minlength"
-             class="error-message" i18n="@@passwordErrorMinLength">
+             class="error-message">
           Password must be at least 6 characters long.
         </div>
       </ng-container>
@@ -76,22 +72,21 @@
       <label for="passwordConfirmation" class="input-label"></label>
       <input id="passwordConfirmation" class="text-input"
              [ngClass]="displayFieldCss('password_confirmation')"
-             formControlName="password_confirmation"
-             i18n-placeholder="@@password_confirmation" placeholder="Repeat Password">
+             formControlName="password_confirmation" placeholder="Repeat Password">
       <ng-container *ngIf="isFieldValid('password_confirmation')">
         <div *ngIf="getFormControl('password_confirmation').errors.required"
-             class="error-message" i18n="@@passwordConfirmationErrorRequired">
+             class="error-message">
           Repeat Password is required.
         </div>
         <div *ngIf="getFormControl('password_confirmation').errors.minlength"
-             class="error-message" i18n="@@passwordConfirmationErrorMinLength">
+             class="error-message">
           Repeat Password must be at least 6 characters long.
         </div>
       </ng-container>
     </div>
 
     <div class="button-container">
-      <button type="submit" class="submit" i18n="@@register">Register</button>
+      <button type="submit" class="submit">Register</button>
     </div>
   </form>
 </section>

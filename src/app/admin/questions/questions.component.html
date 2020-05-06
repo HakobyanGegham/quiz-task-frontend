@@ -9,7 +9,6 @@
   </div>
   <app-question-item *ngFor="let question of filteredItems | async | paginate: { itemsPerPage: 10, currentPage: p }"
                      [question]="question" (removed)="questionRemoved($event)"></app-question-item>
-
   <div class="pagination-controller">
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>

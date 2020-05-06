@@ -7,7 +7,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./success-dialog.component.less']
 })
 export class SuccessDialogComponent implements OnInit {
-
   public successMessage ? = this.data.dataKey;
 
   constructor(public dialogRef: MatDialogRef<SuccessDialogComponent>,

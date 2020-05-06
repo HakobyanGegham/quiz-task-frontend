@@ -14,7 +14,7 @@ export class QuestionItemComponent implements OnInit, OnChanges {
   @Output() removed = new EventEmitter();
 
   constructor(private questionService: QuestionService,
-              private dialog: MatDialog,) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -29,12 +29,16 @@ export class QuestionItemComponent implements OnInit, OnChanges {
   public deleteQuestion() {
     this.questionService.deleteQuestion(+this.question.id).subscribe((question) => {
       this.removed.emit(question.id);
-      this.dialog.open(SuccessDialogComponent, {
-        width: '300px',
-        data: {
-          dataKey: 'Question has been successfully removed.'
-        }
-      });
+      this.showSuccessDialog();
+    });
+  }
+
+  private showSuccessDialog() {
+    this.dialog.open(SuccessDialogComponent, {
+      width: '300px',
+      data: {
+        dataKey: 'Question has been successfully removed.'
+      }
     });
   }
 }

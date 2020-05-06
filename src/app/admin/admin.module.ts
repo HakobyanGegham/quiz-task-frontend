@@ -12,7 +12,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
 import {SharedModule} from '../shared/shared.module';
 
-
 @NgModule({
   declarations: [AdminComponent, QuestionsComponent, QuestionItemComponent, AddUpdateQuestionComponent],
   imports: [

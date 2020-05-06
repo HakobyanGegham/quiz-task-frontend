@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../models/question';
 import {QuestionService} from '../../services/question.service';
-import {from, Observable, of} from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-questions',

@@ -7,7 +7,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./error-dialog.component.less']
 })
 export class ErrorDialogComponent implements OnInit {
-
   public errorMessage ? = this.data.dataKey;
 
   constructor(public dialogRef: MatDialogRef<ErrorDialogComponent>,

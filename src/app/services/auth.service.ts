@@ -19,22 +19,12 @@ export class AuthService {
               private router: Router) {
   }
 
-  /**
-   * Register user
-   *
-   * params
-   */
   public register(params: {}): Observable<User> {
     return this.httpClient.post<User>(this.registerUrl, params).pipe(
       map(res => new User().deserialize(res))
     );
   }
 
-  /**
-   * Login user
-   *
-   *  params
-   */
   public login(params: any): Observable<User> {
     return this.httpClient.post<User>(this.loginUrl, params).pipe(
       map(res => new User().deserialize(res))
