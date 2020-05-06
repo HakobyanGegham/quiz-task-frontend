@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {TokenService} from '../services/token.service';
+import {User} from '../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +11,10 @@ import {AuthService} from '../services/auth.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private tokenService: TokenService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
   }

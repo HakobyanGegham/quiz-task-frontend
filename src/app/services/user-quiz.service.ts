@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Quiz} from '../models/quiz';
 import {UserAnswer} from '../models/user-answer';
+import {AnswerInfo} from '../models/answer-info';
+import {QuizResult} from '../models/quiz-result';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +32,21 @@ export class UserQuizService {
     );
   }
 
-  public saveAnswer(userAnswer: UserAnswer): Observable<string> {
-    return this.httpClient.post<Observable<string>>(`${this.userAnswerUrl}/save`, userAnswer).pipe(
-      map(res => res.toString())
+  public saveAnswer(userAnswer: UserAnswer): Observable<AnswerInfo> {
+    return this.httpClient.post<Observable<AnswerInfo>>(`${this.userAnswerUrl}/save`, userAnswer).pipe(
+      map(res => new AnswerInfo().deserialize(res))
+    );
+  }
+
+  public getResult(id: number): Observable<QuizResult> {
+    return this.httpClient.get<Observable<QuizResult>>(`${this.userQuizUrl}/${id}/result`).pipe(
+      map(res => new QuizResult().deserialize(res))
+    );
+  }
+
+  public getTopTenQuizzes(): Observable<Quiz[]> {
+    return this.httpClient.get<Quiz[]>(`${this.userQuizUrl}/top-ten`).pipe(
+      map(res => res.map(data => new Quiz().deserialize(data)))
     );
   }
 }

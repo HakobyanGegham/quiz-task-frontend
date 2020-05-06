@@ -22,7 +22,6 @@ export class LoginComponent extends FormHelper implements OnInit {
 
   public ngOnInit(): void {
     const userData = this.tokenService.getUser();
-
     if (userData) {
       const user = JSON.parse(userData) as User;
       this.router.navigateByUrl(`/${user.role}`);

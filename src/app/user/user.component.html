@@ -1,6 +1,9 @@
 <div class="user-container">
-  <div class="start-btn-container">
-    <button mat-button matTooltip="start quiz" [routerLink]="['quiz']">Start Quiz</button>
+  <div class="buttons-container">
+    <button mat-button matTooltip="Start Quiz" class="btn" [routerLink]="['quiz']">Start Quiz</button>
+    <button mat-button matTooltip="Top ten" class="btn" [routerLink]="['/top-ten']">Top Ten</button>
+    <div></div>
+    <button mat-button matTooltip="Logout" class="btn logout" (click)="doLogout()">Logout</button>
   </div>
 </div>
 <router-outlet></router-outlet>

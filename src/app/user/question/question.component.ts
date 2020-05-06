@@ -4,6 +4,10 @@ import {Quiz} from '../../models/quiz';
 import {UserQuizService} from '../../services/user-quiz.service';
 import {Observable, of} from 'rxjs';
 import {UserAnswer} from '../../models/user-answer';
+import {MatDialog} from '@angular/material/dialog';
+import {AnswerInfo} from '../../models/answer-info';
+import {InfoDialogComponent} from '../../dialogs/info-dialog/info-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-question',
@@ -16,7 +20,9 @@ export class QuestionComponent implements OnInit, OnChanges {
   public notChosenAnswer: Observable<any>;
   @ViewChildren('answers') answers: QueryList<ElementRef>;
 
-  constructor(private userQuizService: UserQuizService) {
+  constructor(private userQuizService: UserQuizService,
+              private dialog: MatDialog,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -56,7 +62,23 @@ export class QuestionComponent implements OnInit, OnChanges {
       userAnswer.answerId = +chosenAnswer.nativeElement.id;
       userAnswer.questionId = this.question.id;
       userAnswer.quizId = this.quiz.id;
-      this.userQuizService.saveAnswer(userAnswer).subscribe();
+      this.userQuizService.saveAnswer(userAnswer).subscribe(answerInfo => {
+        this.showInfoDialog(answerInfo);
+        if (!answerInfo.isComplete) {
+          this.question = answerInfo.question;
+        } else {
+          this.router.navigateByUrl(`/user/quiz/result/${this.quiz.id}`);
+        }
+      });
     }
+  }
+
+  private showInfoDialog(answerInfo: AnswerInfo) {
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
+      width: '300px',
+      data: {
+        dataKey: answerInfo.message
+      }
+    });
   }
 }

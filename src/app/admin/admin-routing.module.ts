@@ -4,11 +4,14 @@ import {Routes, RouterModule} from '@angular/router';
 import {AdminComponent} from './admin.component';
 import {AddUpdateQuestionComponent} from './add-update-question/add-update-question.component';
 import {QuestionsComponent} from './questions/questions.component';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuardService],
+    data: {roles: ['admin']},
     children: [
       {
         path: 'questions',
