@@ -1,7 +1,4 @@
 <div class="form-container">
-  <div class="return-btn">
-    <button matTooltip="return" mat-button [routerLink]="['/admin/questions']">Return</button>
-  </div>
   <form [formGroup]="form" class="question-form" (ngSubmit)="submit(this.form.value)">
     <mat-form-field>
       <mat-label>Question Content</mat-label>
@@ -31,6 +28,9 @@
       </div>
       <ng-container *ngIf="hasNotCorrectAnswer|async">
         <div class="error-message">Please choose correct answer.</div>
+      </ng-container>
+      <ng-container *ngIf="hasNotIncorrectAnswer|async">
+        <div class="error-message">All answers can not be correct.</div>
       </ng-container>
     </div>
     <div class="btn-container">

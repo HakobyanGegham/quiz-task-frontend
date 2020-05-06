@@ -1,0 +1,22 @@
+<div class="question-container">
+  <div class="question-title">
+    <h2>Question</h2>
+    <div class="question title-container">
+      <span>{{ question?.content}}</span>
+    </div>
+  </div>
+  <h3>Answers</h3>
+  <div class="answers-container">
+    <div class="answer title-container" #answers *ngFor="let answer of question?.answers" [id]="answer.id">
+      <div class="answer-content" (click)="chooseAnswer(answer.id)">
+        <span>{{answer.content}}</span>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="notChosenAnswer|async">
+    <div class="error-message">Please choose correct answer.</div>
+  </ng-container>
+  <div class="btn-container">
+    <button mat-button (click)="saveAnswer()">Next</button>
+  </div>
+</div>

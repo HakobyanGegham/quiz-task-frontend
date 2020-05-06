@@ -7,10 +7,11 @@ import { QuizComponent } from './quiz/quiz.component';
 import { AnswerComponent } from './answer/answer.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { QuestionComponent } from './question/question.component';
 
 
 @NgModule({
-  declarations: [UserComponent, QuizComponent, AnswerComponent],
+  declarations: [UserComponent, QuizComponent, AnswerComponent, QuestionComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

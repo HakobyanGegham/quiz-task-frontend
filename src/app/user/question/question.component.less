@@ -1,0 +1,37 @@
+.question-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+
+  .answers-container {
+    display: grid;
+    grid-row-gap: 10px;
+  }
+
+  .title-container {
+    box-shadow: 0 0 2px 1px #afadad;
+    border-radius: 3px;
+    width: 100%;
+    line-height: 30px;
+    min-height: 30px;
+
+    &.active {
+      background-color: #2199e8;
+      color: white;
+      box-shadow: none;
+    }
+
+    &.answer {
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    &.question {
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn-container {
+    margin-top: 20px;
+  }
+}

@@ -19,6 +19,7 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
   public form: FormGroup;
   public question: Question;
   public hasNotCorrectAnswer: Observable<boolean>;
+  public hasNotIncorrectAnswer: Observable<boolean>;
 
   constructor(private formBuilder: FormBuilder,
               private questionService: QuestionService,
@@ -83,11 +84,12 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
 
   public chooseCorrect() {
     this.hasNotCorrectAnswer = of(false);
+    this.hasNotIncorrectAnswer = of(false);
   }
 
   public submit(value: any) {
     this.formSubmitAttempt = true;
-    if (this.form.valid && this.checkIfHasCorrectAnswer()) {
+    if (this.form.valid && this.checkIfHasCorrectAnswer() && this.checkIfHasInCorrectAnswer()) {
       this.addUpdateAnswer(value);
     } else {
       this.validateAllFormFields(this.form);
@@ -102,6 +104,18 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
 
     if (!correctAnswer) {
       this.hasNotCorrectAnswer = of(true);
+      return false;
+    }
+    return true;
+  }
+
+  private checkIfHasInCorrectAnswer() {
+    const correctAnswer = this.getFormControlAsArray('answers').controls.find(answer => {
+      return answer.get('isCorrect').value === 0 || answer.get('isCorrect').value === false;
+    });
+
+    if (!correctAnswer) {
+      this.hasNotIncorrectAnswer = of(true);
       return false;
     }
     return true;
