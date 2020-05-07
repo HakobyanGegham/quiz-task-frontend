@@ -4,26 +4,21 @@
   </h1>
   <form [formGroup]="form" class="login-form"
         (ngSubmit)="submit(form.value)">
-    <div class="input-container email-container">
-      <label for="email" class="input-label"></label>
-      <input id="email" class="text-input email-input"
-             [ngClass]="displayFieldCss('email')"
-             formControlName="email" placeholder="Email">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [ngClass]="displayFieldCss('email')"
+             formControlName="email">
       <ng-container *ngIf="isFieldValid('email')">
-
         <div *ngIf="getFormControl('email').errors.required"
              class="error-message" i18n="@@emailErrorRequired">
           Email is required.
         </div>
-
       </ng-container>
-    </div>
-
-    <div class="input-container password-container">
-      <label for="password" class="input-label"></label>
-      <input id="password" class="text-input"
-             [ngClass]="displayFieldCss('password')"
-             formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput [ngClass]="displayFieldCss('password')"
+             formControlName="password">
       <ng-container *ngIf="isFieldValid('password')">
 
         <div *ngIf="getFormControl('password').errors.required"
@@ -35,12 +30,10 @@
           Password must be at least 6 characters long.
         </div>
       </ng-container>
-    </div>
+    </mat-form-field>
     <div class="button-container">
-      <button type="submit" class="submit">Login</button>
-      <div class="register-btn-container">
-        <button class="register-btn" [routerLink]="['/register']">Register</button>
-      </div>
+      <button mat-button type="submit">Login</button>
+      <button mat-button [routerLink]="['/register']">Register</button>
     </div>
   </form>
 </section>

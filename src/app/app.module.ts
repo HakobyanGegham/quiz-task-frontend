@@ -11,6 +11,8 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {SharedModule} from './shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},

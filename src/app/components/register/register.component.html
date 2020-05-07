@@ -1,14 +1,13 @@
 <section class="register-container">
-  <h1 class="register-title" i18n="@@registerFormTitle">
+  <h1 class="register-title">
     Register Form
   </h1>
   <form [formGroup]="form" class="register-form"
         (ngSubmit)="submit(form.value)">
-    <div class="input-container">
-      <label for="firstName" class="input-label"></label>
-      <input id="firstName" class="text-input"
-             [ngClass]="displayFieldCss('firstName')"
-             formControlName="firstName" placeholder="First Name">
+    <mat-form-field class="input-container">
+      <mat-label>First name</mat-label>
+      <input matInput [ngClass]="displayFieldCss('firstName')"
+             formControlName="firstName">
       <ng-container *ngIf="isFieldValid('firstName')">
         <div *ngIf="getFormControl('firstName').errors.required"
              class="error-message">
@@ -19,12 +18,11 @@
           First Name must be at least 4 characters long.
         </div>
       </ng-container>
-    </div>
-    <div class="input-container">
-      <label for="lastName" class="input-label"></label>
-      <input id="lastName" class="text-input"
-             [ngClass]="displayFieldCss('lastName')"
-             formControlName="lastName" placeholder="Last Name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput [ngClass]="displayFieldCss('lastName')"
+             formControlName="lastName">
       <ng-container *ngIf="isFieldValid('lastName')">
 
         <div *ngIf="getFormControl('lastName').errors.required"
@@ -36,26 +34,22 @@
           Last Name must be at least 4 characters long.
         </div>
       </ng-container>
-    </div>
-    <div class="input-container email-container">
-      <label for="email" class="input-label"></label>
-      <input id="email" class="text-input email-input"
-             [ngClass]="displayFieldCss('email')"
-             formControlName="email" placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [ngClass]="displayFieldCss('email')"
+             formControlName="email">
       <ng-container *ngIf="isFieldValid('email')">
-
         <div *ngIf="getFormControl('email').errors.required"
              class="error-message">
           Email is required.
         </div>
-
       </ng-container>
-    </div>
-    <div class="input-container password-container">
-      <label for="password" class="input-label"></label>
-      <input id="password" class="text-input"
-             [ngClass]="displayFieldCss('password')"
-             formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput [ngClass]="displayFieldCss('password')"
+             formControlName="password">
       <ng-container *ngIf="isFieldValid('password')">
 
         <div *ngIf="getFormControl('password').errors.required"
@@ -67,12 +61,11 @@
           Password must be at least 6 characters long.
         </div>
       </ng-container>
-    </div>
-    <div class="input-container re-password-container">
-      <label for="passwordConfirmation" class="input-label"></label>
-      <input id="passwordConfirmation" class="text-input"
-             [ngClass]="displayFieldCss('password_confirmation')"
-             formControlName="password_confirmation" placeholder="Repeat Password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Repeat Password</mat-label>
+      <input matInput [ngClass]="displayFieldCss('password_confirmation')"
+             formControlName="password_confirmation">
       <ng-container *ngIf="isFieldValid('password_confirmation')">
         <div *ngIf="getFormControl('password_confirmation').errors.required"
              class="error-message">
@@ -83,10 +76,11 @@
           Repeat Password must be at least 6 characters long.
         </div>
       </ng-container>
-    </div>
+    </mat-form-field>
 
     <div class="button-container">
-      <button type="submit" class="submit">Register</button>
+      <button mat-button type="submit">Register</button>
+      <button mat-button [routerLink]="['/login']">Login</button>
     </div>
   </form>
 </section>
