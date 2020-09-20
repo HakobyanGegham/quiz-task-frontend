@@ -11,31 +11,31 @@
       <mat-slider thumbLabel formControlName="score"
                   tickInterval="20" min="5" max="20"></mat-slider>
     </div>
-    <div class="answer-container">
-      <div class="answers" formArrayName="answers"
-           *ngFor="let answer of getFormControlAsArray('answers').controls;let i= index">
-        <div [formGroupName]="i" class="answer-container">
-          <mat-form-field class="answer-form-field">
-            <mat-label>Answer</mat-label>
+    <div class="option-container">
+      <div class="options" formArrayName="options"
+           *ngFor="let option of getFormControlAsArray('options').controls;let i= index">
+        <div [formGroupName]="i" class="option-container">
+          <mat-form-field class="option-form-field">
+            <mat-label>option</mat-label>
             <input matInput formControlName="content">
           </mat-form-field>
-          <button mat-button matTooltip="Remove Answer" (click)="removeAnswer(i, $event)">
+          <button mat-button matTooltip="Remove option" (click)="removeOption(i, $event)">
             <mat-icon class="action-button remove">delete</mat-icon>
           </button>
           <mat-checkbox formControlName="isCorrect" (click)="chooseCorrect()"></mat-checkbox>
-          <input type="hidden" formControlName="id">
+          <input type="hidden" formControlName="_id">
         </div>
       </div>
-      <ng-container *ngIf="hasNotCorrectAnswer|async">
-        <div class="error-message">Please choose correct answer.</div>
+      <ng-container *ngIf="hasNotCorrectOption|async">
+        <div class="error-message">Please choose correct option.</div>
       </ng-container>
-      <ng-container *ngIf="hasNotIncorrectAnswer|async">
-        <div class="error-message">All answers can not be correct.</div>
+      <ng-container *ngIf="hasNotIncorrectOption|async">
+        <div class="error-message">All options can not be correct.</div>
       </ng-container>
     </div>
     <div class="btn-container">
-      <button mat-button matTooltip="Add Answer" class="button-container" (click)="addAnswer($event)">
-        <span class="add-text">Add Answer</span>
+      <button mat-button matTooltip="Add option" class="button-container" (click)="addOption($event)">
+        <span class="add-text">Add option</span>
         <mat-icon class="add-icon">add</mat-icon>
       </button>
     </div>

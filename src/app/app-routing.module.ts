@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
-import {TopTenComponent} from './components/top-ten/top-ten.component';
+import {BestResultsComponent} from './components/best-results/best-results.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'top-ten', component: TopTenComponent},
+  {path: 'best-results', component: BestResultsComponent},
   {path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule)},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 ];

@@ -7,9 +7,9 @@
   </div>
   <h3>Answers</h3>
   <div class="answers-container">
-    <div class="answer title-container" #answers *ngFor="let answer of question?.answers" [id]="answer.id">
-      <div class="answer-content" (click)="chooseAnswer(answer.id)">
-        <span>{{answer.content}}</span>
+    <div class="answer title-container" #options *ngFor="let option of question?.options" [id]="option._id">
+      <div class="answer-content" (click)="chooseAnswer(option._id)">
+        <span>{{option.content}}</span>
       </div>
     </div>
   </div>

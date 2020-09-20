@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TopTenComponent} from '../components/top-ten/top-ten.component';
+import {BestResultsComponent} from '../components/best-results/best-results.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,7 +13,7 @@ import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
-    TopTenComponent,
+    BestResultsComponent,
     ErrorDialogComponent,
     SuccessDialogComponent,
     InfoDialogComponent
@@ -28,13 +28,13 @@ import {RouterModule} from '@angular/router';
     RouterModule,
   ],
   exports: [
-    TopTenComponent,
+    BestResultsComponent,
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
-    TopTenComponent,
+    BestResultsComponent,
     ErrorDialogComponent,
     SuccessDialogComponent,
     InfoDialogComponent,

@@ -2,7 +2,7 @@
   <div class="question-title">
     {{this.question.content}}
   </div>
-  <a class="edit" [routerLink]="['/admin/question/edit/' + this.question.id]">
+  <a class="edit" [routerLink]="['/admin/question/edit/' + this.question._id]">
     <button mat-button class="create-btn" i18n matTooltip="Edit Item">
       <mat-icon>create</mat-icon>
     </button>

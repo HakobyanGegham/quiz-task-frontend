@@ -27,8 +27,8 @@ export class QuestionItemComponent implements OnInit, OnChanges {
   }
 
   public deleteQuestion() {
-    this.questionService.deleteQuestion(+this.question.id).subscribe((question) => {
-      this.removed.emit(question.id);
+    this.questionService.deleteQuestion(this.question._id).subscribe((question) => {
+      this.removed.emit(question._id);
       this.showSuccessDialog();
     });
   }

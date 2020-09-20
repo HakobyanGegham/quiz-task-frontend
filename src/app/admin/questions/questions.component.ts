@@ -25,6 +25,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   public questionRemoved(id: any) {
-    this.filteredItems = of(this.questions.filter(question => question.id !== id));
+    this.filteredItems = of(this.questions.filter(question => question._id !== id));
   }
 }

@@ -11,8 +11,8 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  private registerUrl = '/api/user/register';
-  private loginUrl = '/api/user/login';
+  private registerUrl = '/api/auth/register';
+  private loginUrl = '/api/auth/login';
 
   constructor(private httpClient: HttpClient,
               private tokenService: TokenService,
@@ -20,6 +20,7 @@ export class AuthService {
   }
 
   public register(params: {}): Observable<User> {
+    console.log(JSON.stringify(params));
     return this.httpClient.post<User>(this.registerUrl, params).pipe(
       map(res => new User().deserialize(res))
     );

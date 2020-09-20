@@ -18,7 +18,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   @Input() quiz: Quiz;
   public question: Question;
   public notChosenAnswer: Observable<any>;
-  @ViewChildren('answers') answers: QueryList<ElementRef>;
+  @ViewChildren('options') options: QueryList<ElementRef>;
 
   constructor(private userQuizService: UserQuizService,
               private dialog: MatDialog,
@@ -31,7 +31,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.quiz.currentValue) {
       this.quiz = changes.quiz.currentValue;
-      this.userQuizService.getRandomQuestion(+this.quiz.id).subscribe((question) => {
+      this.userQuizService.getRandomQuestion(this.quiz._id).subscribe((question) => {
         this.question = question;
       });
     }
@@ -39,17 +39,17 @@ export class QuestionComponent implements OnInit, OnChanges {
 
   public chooseAnswer(id) {
     this.notChosenAnswer = of(false);
-    this.answers.forEach(answer => {
-      answer.nativeElement.classList.remove('active');
-      if (+answer.nativeElement.id === id) {
-        answer.nativeElement.classList.add('active');
+    this.options.forEach(option => {
+      option.nativeElement.classList.remove('active');
+      if (option.nativeElement.id === id) {
+        option.nativeElement.classList.add('active');
       }
     });
   }
 
   private getChosenAnswer() {
-    return this.answers.find(answer => {
-      return answer.nativeElement.classList.contains('active');
+    return this.options.find(option => {
+      return option.nativeElement.classList.contains('active');
     });
   }
 
@@ -59,15 +59,15 @@ export class QuestionComponent implements OnInit, OnChanges {
       this.notChosenAnswer = of(true);
     } else {
       const userAnswer = new UserAnswer();
-      userAnswer.answerId = +chosenAnswer.nativeElement.id;
-      userAnswer.questionId = this.question.id;
-      userAnswer.quizId = this.quiz.id;
+      userAnswer.answerId = chosenAnswer.nativeElement.id;
+      userAnswer.questionId = this.question._id;
+      userAnswer.quizId = this.quiz._id;
       this.userQuizService.saveAnswer(userAnswer).subscribe(answerInfo => {
         this.showInfoDialog(answerInfo);
         if (!answerInfo.isComplete) {
           this.question = answerInfo.question;
         } else {
-          this.router.navigateByUrl(`/user/quiz/result/${this.quiz.id}`);
+          this.router.navigateByUrl(`/user/quiz/result/${this.quiz._id}`);
         }
       });
     }

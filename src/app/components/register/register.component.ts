@@ -32,14 +32,15 @@ export class RegisterComponent extends FormHelper implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      password_confirmation: ['', [Validators.required, Validators.minLength(6)]]
+      passwordConfirmation: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   public submit(value: any) {
     this.formSubmitAttempt = true;
     if (this.form.valid) {
-      this.authService.register(value).subscribe(user => {
+      const {passwordConfirmation, ...data} = value;
+      this.authService.register(data).subscribe(user => {
         this.tokenService.saveUser(user);
         this.tokenService.saveToken(user.token);
         this.router.navigateByUrl(`/${user.role}`);

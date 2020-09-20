@@ -6,7 +6,7 @@
         (ngSubmit)="submit(form.value)">
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput [ngClass]="displayFieldCss('email')"
+      <input matInput type="email" [ngClass]="displayFieldCss('email')"
              formControlName="email">
       <ng-container *ngIf="isFieldValid('email')">
         <div *ngIf="getFormControl('email').errors.required"
@@ -17,7 +17,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput [ngClass]="displayFieldCss('password')"
+      <input matInput type="password" [ngClass]="displayFieldCss('password')"
              formControlName="password">
       <ng-container *ngIf="isFieldValid('password')">
 

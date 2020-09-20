@@ -18,7 +18,7 @@ export class QuizResultComponent implements OnInit {
   ngOnInit(): void {
     const quizId = this.route.snapshot.paramMap.get('quizId');
     if (quizId) {
-      this.userQuizService.getResult(+quizId).subscribe(quizResult => {
+      this.userQuizService.getResult(quizId).subscribe(quizResult => {
         this.quizResult = quizResult;
       });
     }

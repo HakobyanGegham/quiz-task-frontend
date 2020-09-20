@@ -4,8 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Question} from '../../models/question';
 import {QuestionService} from '../../services/question.service';
 import {ActivatedRoute} from '@angular/router';
-import {Answer} from '../../models/answer';
-import {AnswerService} from '../../services/answer.service';
+import {Option} from '../../models/option';
+import {OptionService} from '../../services/option.service';
 import {Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {SuccessDialogComponent} from '../../dialogs/success-dialog/success-dialog.component';
@@ -18,12 +18,12 @@ import {SuccessDialogComponent} from '../../dialogs/success-dialog/success-dialo
 export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
   public form: FormGroup;
   public question: Question;
-  public hasNotCorrectAnswer: Observable<boolean>;
-  public hasNotIncorrectAnswer: Observable<boolean>;
+  public hasNotCorrectOption: Observable<boolean>;
+  public hasNotIncorrectOption: Observable<boolean>;
 
   constructor(private formBuilder: FormBuilder,
               private questionService: QuestionService,
-              private answerService: AnswerService,
+              private optionService: OptionService,
               private dialog: MatDialog,
               private route: ActivatedRoute) {
     super();
@@ -33,7 +33,7 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
     this.initForm();
     const questionId = this.route.snapshot.paramMap.get('questionId');
     if (questionId) {
-      this.questionService.getQuestion(+questionId).subscribe(question => {
+      this.questionService.getQuestion(questionId).subscribe(question => {
         this.question = question;
         this.setFormValues();
       });
@@ -44,91 +44,91 @@ export class AddUpdateQuestionComponent extends FormHelper implements OnInit {
     this.form = this.formBuilder.group({
       content: ['', [Validators.required, Validators.minLength(5)]],
       score: [5, [Validators.required]],
-      answers: this.formBuilder.array([this.createAnswerControl()])
+      options: this.formBuilder.array([this.createOptionControl()])
     });
   }
 
   private setFormValues() {
     this.getFormControl('content').setValue(this.question.content);
     this.getFormControl('score').setValue(this.question.score);
-    this.getFormControlAsArray('answers').removeAt(0);
-    this.question.answers.forEach(answer => {
-      this.getFormControlAsArray('answers').push(this.createAnswerControl(answer));
+    this.getFormControlAsArray('options').removeAt(0);
+    this.question.options.forEach(option => {
+      this.getFormControlAsArray('options').push(this.createOptionControl(option));
     });
   }
 
-  private createAnswerControl(answer?: Answer) {
+  private createOptionControl(option?: Option) {
     return this.formBuilder.group({
-      content: [answer ? answer.content : '', [Validators.required, Validators.minLength(4)]],
-      isCorrect: [answer ? answer.isCorrect : 0],
-      id: [answer ? answer.id : '']
+      content: [option ? option.content : '', [Validators.required, Validators.minLength(4)]],
+      isCorrect: [option ? option.isCorrect : 0],
+      _id: [option ? option._id : '']
     });
   }
 
-  public removeAnswer(index: number, event: Event) {
+  public removeOption(index: number, event: Event) {
     event.preventDefault();
-    const answers = this.getFormControlAsArray('answers');
-    if (answers.length > 1) {
-      if (answers.controls[index].get('id').value) {
-        this.answerService.deleteAnswer(+answers.controls[index].get('id').value).subscribe();
+    const options = this.getFormControlAsArray('options');
+    if (options.length > 1) {
+      if (options.controls[index].get('_id').value) {
+        this.optionService.deleteOption(options.controls[index].get('_id').value).subscribe();
       }
-      answers.removeAt(index);
+      options.removeAt(index);
     }
   }
 
-  public addAnswer(event: Event) {
+  public addOption(event: Event) {
     event.preventDefault();
-    const answers = this.getFormControlAsArray('answers');
-    answers.push(this.createAnswerControl());
+    const options = this.getFormControlAsArray('options');
+    options.push(this.createOptionControl());
   }
 
   public chooseCorrect() {
-    this.hasNotCorrectAnswer = of(false);
-    this.hasNotIncorrectAnswer = of(false);
+    this.hasNotCorrectOption = of(false);
+    this.hasNotIncorrectOption = of(false);
   }
 
   public submit(value: any) {
     this.formSubmitAttempt = true;
-    if (this.form.valid && this.checkIfHasCorrectAnswer() && this.checkIfHasInCorrectAnswer()) {
-      this.addUpdateAnswer(value);
+    if (this.form.valid && this.checkIfHasCorrectOption() && this.checkIfHasInCorrectOption()) {
+      this.addUpdateOption(value);
     } else {
       this.validateAllFormFields(this.form);
       return false;
     }
   }
 
-  private checkIfHasCorrectAnswer() {
-    const correctAnswer = this.getFormControlAsArray('answers').controls.find(answer => {
-      return answer.get('isCorrect').value !== 0 && answer.get('isCorrect').value !== false;
+  private checkIfHasCorrectOption() {
+    const correctOption = this.getFormControlAsArray('options').controls.find(option => {
+      return option.get('isCorrect').value !== 0 && option.get('isCorrect').value !== false;
     });
 
-    if (!correctAnswer) {
-      this.hasNotCorrectAnswer = of(true);
+    if (!correctOption) {
+      this.hasNotCorrectOption = of(true);
       return false;
     }
     return true;
   }
 
-  private checkIfHasInCorrectAnswer() {
-    const correctAnswer = this.getFormControlAsArray('answers').controls.find(answer => {
-      return answer.get('isCorrect').value === 0 || answer.get('isCorrect').value === false;
+  private checkIfHasInCorrectOption() {
+    const correctOption = this.getFormControlAsArray('options').controls.find(option => {
+      return option.get('isCorrect').value === 0 || option.get('isCorrect').value === false;
     });
 
-    if (!correctAnswer) {
-      this.hasNotIncorrectAnswer = of(true);
+    if (!correctOption) {
+      this.hasNotIncorrectOption = of(true);
       return false;
     }
     return true;
   }
 
-  private addUpdateAnswer(value: any) {
+  private addUpdateOption(value: any) {
     const newQuestion = new Question();
     newQuestion.content = value.content;
     newQuestion.score = value.score;
-    newQuestion.answers = value.answers;
+    newQuestion.options = value.options;
 
     if (this.question) {
-      this.questionService.updateQuestion(newQuestion, this.question.id).subscribe(() => {
+      this.questionService.updateQuestion(newQuestion, this.question._id).subscribe(() => {
         this.showSuccessDialog('Question has been updated successfully.');
       });
     } else {

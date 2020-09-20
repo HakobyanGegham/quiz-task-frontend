@@ -6,11 +6,11 @@ import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-top-ten',
-  templateUrl: './top-ten.component.html',
-  styleUrls: ['./top-ten.component.less']
+  selector: 'app-best-results',
+  templateUrl: './best-results.component.html',
+  styleUrls: ['./best-results.component.less']
 })
-export class TopTenComponent implements OnInit {
+export class BestResultsComponent implements OnInit {
   public quizzes: Quiz[];
 
   constructor(private userQuizService: UserQuizService,
@@ -19,7 +19,7 @@ export class TopTenComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userQuizService.getTopTenQuizzes().subscribe(quizzes => {
+    this.userQuizService.getBestResults().subscribe(quizzes => {
       this.quizzes = quizzes;
     });
   }

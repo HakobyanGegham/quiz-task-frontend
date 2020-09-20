@@ -37,7 +37,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput [ngClass]="displayFieldCss('email')"
+      <input matInput type="email" [ngClass]="displayFieldCss('email')"
              formControlName="email">
       <ng-container *ngIf="isFieldValid('email')">
         <div *ngIf="getFormControl('email').errors.required"
@@ -48,7 +48,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput [ngClass]="displayFieldCss('password')"
+      <input matInput type="password" [ngClass]="displayFieldCss('password')"
              formControlName="password">
       <ng-container *ngIf="isFieldValid('password')">
 
@@ -64,14 +64,14 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Repeat Password</mat-label>
-      <input matInput [ngClass]="displayFieldCss('password_confirmation')"
-             formControlName="password_confirmation">
-      <ng-container *ngIf="isFieldValid('password_confirmation')">
-        <div *ngIf="getFormControl('password_confirmation').errors.required"
+      <input matInput type="password" [ngClass]="displayFieldCss('passwordConfirmation')"
+             formControlName="passwordConfirmation">
+      <ng-container *ngIf="isFieldValid('passwordConfirmation')">
+        <div *ngIf="getFormControl('passwordConfirmation').errors.required"
              class="error-message">
           Repeat Password is required.
         </div>
-        <div *ngIf="getFormControl('password_confirmation').errors.minlength"
+        <div *ngIf="getFormControl('passwordConfirmation').errors.minlength"
              class="error-message">
           Repeat Password must be at least 6 characters long.
         </div>

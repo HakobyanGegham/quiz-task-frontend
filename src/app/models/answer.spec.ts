@@ -1,7 +1,7 @@
-import { Answer } from './answer';
+import { Option } from './option';
 
 describe('Answer', () => {
   it('should create an instance', () => {
-    expect(new Answer()).toBeTruthy();
+    expect(new Option()).toBeTruthy();
   });
 });

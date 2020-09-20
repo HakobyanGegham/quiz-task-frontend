@@ -1,7 +1,7 @@
 import Deserializable from './shared/deserializable';
 
 export class QuizResult implements Deserializable {
-  id: number;
+  id: string;
   score: number;
 
   deserialize(input: any): this {

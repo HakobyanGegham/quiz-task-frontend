@@ -1,16 +1,17 @@
 import Deserializable from './shared/deserializable';
-import {Answer} from './answer';
+import {Option} from './option';
 
 export class Question implements Deserializable {
-  id: number;
+  // tslint:disable-next-line:variable-name
+  _id: string;
   content: string;
   score: number;
-  answers: Answer[];
+  options: Option[];
 
   deserialize(input: any): this {
     Object.assign(this, input);
-    input.answers.forEach((program, key) => {
-      this.answers[key] = new Answer().deserialize(program);
+    input.options.forEach((program, key) => {
+      this.options[key] = new Option().deserialize(program);
     });
     return this;
   }

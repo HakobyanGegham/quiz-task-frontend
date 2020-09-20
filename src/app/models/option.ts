@@ -1,7 +1,8 @@
 import Deserializable from './shared/deserializable';
 
-export class Answer implements Deserializable {
-  id: number;
+export class Option implements Deserializable {
+  // tslint:disable-next-line:variable-name
+  _id: string;
   questionId: number;
   content: string;
   isCorrect: number;
