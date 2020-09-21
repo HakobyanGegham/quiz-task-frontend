@@ -46,7 +46,7 @@ export class UserQuizService {
   }
 
   public getBestResults(): Observable<Quiz[]> {
-    return this.httpClient.get<Quiz[]>(`${this.userQuizUrl}/best-results?limit${this.bestResultsLimit}`).pipe(
+    return this.httpClient.get<Quiz[]>(`${this.userQuizUrl}/best-results?limit=${this.bestResultsLimit}`).pipe(
       map(res => res.map(data => new Quiz().deserialize(data)))
     );
   }
